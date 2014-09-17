@@ -1,17 +1,15 @@
 require 'active_model'
-require 'phony'
-require 'countries'
 require 'active_validators/one_nine_shims/one_nine_string'
 
 module ActiveValidators
   def self.activevalidators
-    %w(email url respond_to phone slug ip credit_card date password twitter postal_code tracking_number siren ssn sin nino barcode date)
+    %w(email url respond_to slug ip credit_card date password twitter postal_code tracking_number siren ssn sin nino barcode date)
   end
 
   # Require each validator independently or just pass :all
   #
   # call-seq:
-  #   ActiveValidators.activate(:phone, :email, :date)
+  #   ActiveValidators.activate(:email, :date)
   #   ActiveValidators.activate(:all)
   def self.activate(*validators)
     syms = validators.include?(:all) ? activevalidators : validators.map(&:to_s) & activevalidators
